@@ -8,9 +8,10 @@ from torchvision.transforms import v2
 import numpy as np
 
 #-------------------------------------DATA Augumentation-----------------------------------------------------
+
 train_transform = v2.Compose([
     v2.ToTensor(),
-    v2.RandomResizedCrop(48*48),
+    v2.RandomResizedCrop(48),
     v2.RandomHorizontalFlip(0.3),
     v2.Grayscale(num_output_channels=1),
     v2.ToImage(),
@@ -19,7 +20,7 @@ train_transform = v2.Compose([
 
 test_transform = v2.Compose([
     v2.ToTensor(),
-    v2.RandomResizedCrop(48*48),
+    v2.RandomResizedCrop(48),
     v2.Grayscale(num_output_channels=1),
     v2.ToImage(),
     v2.ToDtype(torch.float32, scale=True)
@@ -56,3 +57,21 @@ for i in range(100):
     plt.axis('off')
 plt.tight_layout()
 plt.show()
+
+#----------------------loop dataloader--------------------------------
+
+#-----------------train-------------------
+for inputs, output in train_loader:
+    print("Train Input Shape:", inputs.shape) 
+    print("Train Output Labels:", output)
+    break 
+#--------------Test-----------------------
+for inputs1, output1 in test_loader:
+    print("Test Input Shape:", inputs1.shape)
+    print("Test Output Labels:", output1)
+    break 
+#-------------------Val-----------------------
+for inputs2, output2 in val_loader:
+    print("Val Input Shape:", inputs2.shape)
+    print("Val Output Labels:", output2)
+    break 
